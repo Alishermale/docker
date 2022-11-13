@@ -7,6 +7,8 @@ import logging
 
 from aiogram import Bot, Dispatcher, executor, types
 
+from app.text.some_phrases import hello
+
 API_TOKEN = 'TOKEN'
 
 # Configure logging
@@ -19,16 +21,14 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
-    """
-    This handler will be called when user sends `/start` or `/help` command
-    """
-    await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
+    await message.reply(hello)
 
 
 @dp.message_handler()
 async def echo(message: types.Message):
     # old style:
     # await bot.send_message(message.chat.id, message.text)
+    # 5237414933: AAG8mUlrkJ_k_ZdjkLq9bk75iZ915RmyW8Q
 
     await message.answer(message.text)
 
